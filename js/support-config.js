@@ -1,22 +1,34 @@
 /* ============================================================
    support-config.js — Stage-0 monetization switches for the hub.
-   Same pattern as waytoc: EVERY surface below stays completely
-   hidden until you fill in the matching value, so the site never
-   shows a broken link. Fill these in as you create the accounts:
+   EVERY surface below stays completely hidden until you fill in
+   the matching account name, so the site never shows a broken
+   link. Fill in a platform as you create the account; see
+   DONATIONS.md for setup steps and how to choose platforms.
+   Keep the same values in each subdomain's support-config.js and
+   uncomment the matching lines in .github/FUNDING.yml.
    ============================================================ */
 window.SUPPORT = {
   /* github.com/sponsors — enable on your GitHub account, then put
-     your username here, e.g. 'SadeAli'. Renders "♥ Sponsor" links. */
+     your username here, e.g. 'SadeAli'. */
   githubSponsors: '',
 
-  /* ko-fi.com — create a page, put the page name here, e.g. 'sadeali'. */
+  /* ko-fi.com — page name, e.g. 'sadeali'. */
   kofi: '',
 
-  /* buttondown.com — create a (free <100 subs) newsletter, put the
-     username here. Renders the email opt-in form on /support. */
+  /* buymeacoffee.com — page name, e.g. 'sadeali'. */
+  buymeacoffee: '',
+
+  /* liberapay.com — username, e.g. 'sadeali'. */
+  liberapay: '',
+
+  /* patreon.com — page name, e.g. 'sadeali'. */
+  patreon: '',
+
+  /* buttondown.com — newsletter username (free under 100 subs).
+     Renders the email opt-in form on /support. */
   buttondown: '',
 
   /* Names shown on the supporters wall (/support). Hand-edit after
-     each donation — this is the static "wall of legends". */
+     each donation (ask permission before listing a name). */
   supporters: [],
 };

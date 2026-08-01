@@ -6,6 +6,16 @@
   var S = window.SUPPORT || {};
   var root = document.documentElement;
 
+  /* Donation platforms: [config key, base URL, button label, accent, short label] */
+  var PLATFORMS = [
+    ['kofi', 'https://ko-fi.com/', '☕ Ko-fi', 'accent-coral', 'Ko-fi'],
+    ['buymeacoffee', 'https://buymeacoffee.com/', '☕ Buy Me a Coffee', 'accent-sunny', 'Coffee'],
+    ['githubSponsors', 'https://github.com/sponsors/', '♥ GitHub Sponsors', 'accent-lilac', 'Sponsor'],
+    ['liberapay', 'https://liberapay.com/', '♥ Liberapay', 'accent-mint', 'Liberapay'],
+    ['patreon', 'https://patreon.com/', '★ Patreon', 'accent-bubblegum', 'Patreon'],
+  ];
+  var configured = PLATFORMS.filter(function (p) { return S[p[0]]; });
+
   /* ---- Theme toggle (initial theme is set inline in <head>) ---- */
   var toggle = document.getElementById('themeToggle');
   if (toggle) {
@@ -17,44 +27,37 @@
     });
   }
 
-  /* ---- Footer: append configured support links after GitHub ---- */
+  /* ---- Footer: append up to two configured platforms after GitHub ---- */
   var slot = document.getElementById('supportLinks');
   if (slot) {
-    var links = [];
-    if (S.kofi) links.push(['https://ko-fi.com/' + S.kofi, 'Ko-fi']);
-    if (S.githubSponsors) links.push(['https://github.com/sponsors/' + S.githubSponsors, 'Sponsor']);
-    links.forEach(function (l) {
+    configured.slice(0, 2).forEach(function (p) {
       var dot = document.createElement('span');
       dot.textContent = '·';
       dot.setAttribute('aria-hidden', 'true');
       var a = document.createElement('a');
-      a.href = l[0];
-      a.textContent = l[1];
+      a.href = p[1] + S[p[0]];
+      a.textContent = p[4];
       a.rel = 'noopener';
       slot.appendChild(dot);
       slot.appendChild(a);
     });
   }
 
-  /* ---- Support page: reveal configured surfaces ---- */
+  /* ---- Support page: one button per configured platform ---- */
   var money = document.getElementById('moneyWays');
   if (money) {
-    var any = false;
-    var kofiBtn = money.querySelector('[data-support="kofi"]');
-    if (kofiBtn && S.kofi) {
-      kofiBtn.href = 'https://ko-fi.com/' + S.kofi;
-      kofiBtn.hidden = false;
-      any = true;
-    }
-    var sponsorBtn = money.querySelector('[data-support="sponsors"]');
-    if (sponsorBtn && S.githubSponsors) {
-      sponsorBtn.href = 'https://github.com/sponsors/' + S.githubSponsors;
-      sponsorBtn.hidden = false;
-      any = true;
-    }
-    money.hidden = !any;
+    var row = document.getElementById('donateButtons');
+    configured.forEach(function (p) {
+      var a = document.createElement('a');
+      a.href = p[1] + S[p[0]];
+      a.className = 'btn ' + p[3];
+      a.textContent = p[2];
+      a.rel = 'noopener';
+      row.appendChild(a);
+    });
+    money.hidden = configured.length === 0;
     var soon = document.getElementById('moneySoon');
-    if (soon) soon.hidden = any;
+    if (soon) soon.hidden = configured.length > 0;
   }
 
   var newsletter = document.getElementById('newsletter');

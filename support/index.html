@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="Support — SadeAli">
 <meta name="twitter:description" content="Keep the experiments coming.">
 <meta name="twitter:image" content="https://sadeali.com/og.png">
-<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🧸&lt;/text&gt;&lt;/svg&gt;">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🧪&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="../css/style.css">
 <script>
 (function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();
@@ -41,7 +41,7 @@
 
   <h2>Free ways (they mean a lot)</h2>
   <ul class="fancy">
-    <li>⭐ <strong>Star the projects</strong> on <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a> — stars are how strangers decide the toybox is worth opening.</li>
+    <li>⭐ <strong>Star the projects</strong> on <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a> — stars are how strangers decide a project is worth opening.</li>
     <li>📣 <strong>Share a page</strong> with one friend who'd enjoy it. Word of mouth beats any algorithm.</li>
     <li>🐛 <strong>Report a bug or idea</strong> on the project's GitHub repo — issues are gifts.</li>
   </ul>
@@ -49,10 +49,9 @@
   <section id="moneyWays" hidden>
     <h2>Fuel the next experiment</h2>
     <p>Donations pay for domains and hosting, and buy the time that turns “someday” ideas into pages.</p>
-    <p class="btnrow">
-      <a class="btn accent-coral" data-support="kofi" hidden rel="noopener">☕ Buy me a Ko-fi</a>
-      <a class="btn accent-lilac" data-support="sponsors" hidden rel="noopener">♥ GitHub Sponsors</a>
-    </p>
+    <!-- Buttons are rendered by js/main.js from the switches in
+         js/support-config.js — one per configured platform. -->
+    <p class="btnrow" id="donateButtons"></p>
   </section>
   <p id="moneySoon">Donation buttons aren't wired up yet — for now, a GitHub star is the best coffee. ☕</p>
 
@@ -82,7 +81,6 @@
     <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a>
     <span id="supportLinks"></span>
   </nav>
-  <p class="brandstory"><em lang="tr">sade</em> — Turkish for “plain.” So it’s just Ali.</p>
   <p class="fineprint">© SadeAli · free · no ads · no tracking</p>
 </footer>
 

@@ -1,5 +1,5 @@
 /* ============================================================
-   sadeali.com — playful toybox theme.
+   sadeali.com — playful theme.
    Zero dependencies, no external fonts; system rounded stack.
    Tokens first, then hero, cards, inner pages, footer.
    ============================================================ */
@@ -430,10 +430,7 @@ a.card:hover, a.card:focus-visible {
 
 .heart-ink { color: var(--coral); }
 
-.brandstory { margin: 18px 0 4px; font-size: 0.95rem; }
-.brandstory em { font-weight: 700; }
-
-.fineprint { margin: 0; font-size: 0.8rem; }
+.fineprint { margin: 18px 0 0; font-size: 0.8rem; }
 
 /* ===== Motion & small screens ===== */
 
