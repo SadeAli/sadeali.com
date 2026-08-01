@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🧪&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="../css/style.css">
 <script>
-(function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();
+(function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}document.documentElement.dataset.theme=(t==='light')?'light':'dark';})();
 </script>
 </head>
 <body>
@@ -36,18 +36,24 @@
 </div>
 
 <main class="page">
-  <h1>What is this place? 🧪</h1>
-  <p class="lede">sadeali.com is a growing collection of small interactive things — games, tools and explorables. Everything runs in your browser: free, no signup, no ads, no tracking.</p>
+  <div class="term">
+    <div class="term-bar" aria-hidden="true"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="term-title">~/about.txt</span></div>
+    <div class="term-body">
+      <p class="promptline" aria-hidden="true"><span class="prompt">$</span> cat about.txt</p>
+      <h1>What is this place? 🧪</h1>
+      <p class="lede">sadeali.com is a growing collection of small interactive things — games, tools and explorables. Everything runs in your browser: free, no signup, no ads, no tracking.</p>
 
-  <h2>Who makes it?</h2>
-  <p>SadeAli — I love making things more than talking about myself.</p>
-  <p>Everything here is open source — you can read the code for every experiment on <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a>.</p>
+      <h2>Who makes it?</h2>
+      <p>SadeAli — I love making things more than talking about myself.</p>
+      <p>Everything here is open source — you can read the code for every experiment on <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a>.</p>
 
-  <h2>Why?</h2>
-  <p>The small, handmade corner of the internet is my favorite corner, and I want to add to it. A new experiment appears whenever one is ready — the front page is the catalog, and there's no schedule to disappoint you with.</p>
+      <h2>Why?</h2>
+      <p>The small, handmade corner of the internet is my favorite corner, and I want to add to it. A new experiment appears whenever one is ready — the front page is the catalog, and there's no schedule to disappoint you with.</p>
 
-  <h2>Enjoying it?</h2>
-  <p>The nicest things you can do are share a page with a friend, or visit the <a href="../support/">support page</a>. ♥</p>
+      <h2>Enjoying it?</h2>
+      <p>The nicest things you can do are share a page with a friend, or visit the <a href="../support/">support page</a>. ♥</p>
+    </div>
+  </div>
 </main>
 
 <footer class="footer">
@@ -59,7 +65,7 @@
     <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a>
     <span id="supportLinks"></span>
   </nav>
-  <p class="fineprint">© SadeAli · free · no ads · no tracking</p>
+  <p class="fineprint"><span aria-hidden="true"># </span>© SadeAli · free · no ads · no tracking</p>
 </footer>
 
 <script src="../js/support-config.js"></script>

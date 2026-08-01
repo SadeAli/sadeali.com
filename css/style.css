@@ -1,10 +1,34 @@
 /* ============================================================
-   sadeali.com — playful theme.
-   Zero dependencies, no external fonts; system rounded stack.
-   Tokens first, then hero, cards, inner pages, footer.
+   sadeali.com — friendly terminal theme.
+   Dark-first (a terminal is dark); the toggle switches to a
+   "paper terminal" light mode. Zero dependencies, system mono
+   stack. Tokens, terminal window component, hero, cards,
+   inner pages, footer.
    ============================================================ */
 
 :root {
+  --bg: #131020;
+  --card: #1D1932;
+  --ink: #EDE9FF;
+  --muted: #A79FC2;
+  --line: #352C55;
+  --shadow: rgba(0, 0, 0, 0.45);
+  --hero-from: #1C1738;
+  --focus: #9D7BF4;
+  --link: #3FB3F6;
+  --blob-alpha: 0.26;
+
+  --coral: #FF6B6B;
+  --sunny: #FFB627;
+  --mint: #2EC4A6;
+  --sky: #3FB3F6;
+  --lilac: #9D7BF4;
+  --bubblegum: #F46BB8;
+  --prompt: var(--mint);
+}
+
+/* Paper terminal (light) — chosen via the toggle. */
+:root[data-theme="light"] {
   --bg: #FDF6EC;
   --card: #FFFFFF;
   --ink: #2B2440;
@@ -15,42 +39,7 @@
   --focus: #1A73AD;
   --link: #1A73AD;
   --blob-alpha: 0.5;
-
-  --coral: #FF6B6B;
-  --sunny: #FFB627;
-  --mint: #2EC4A6;
-  --sky: #3FB3F6;
-  --lilac: #9D7BF4;
-  --bubblegum: #F46BB8;
-}
-
-:root[data-theme="dark"] {
-  --bg: #1A1626;
-  --card: #241E35;
-  --ink: #F3EEFF;
-  --muted: #A79FC2;
-  --line: #372E52;
-  --shadow: rgba(0, 0, 0, 0.45);
-  --hero-from: #2A2350;
-  --focus: #9D7BF4;
-  --link: var(--sky);
-  --blob-alpha: 0.28;
-}
-
-/* No-JS visitors still get their preferred scheme. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1A1626;
-    --card: #241E35;
-    --ink: #F3EEFF;
-    --muted: #A79FC2;
-    --line: #372E52;
-    --shadow: rgba(0, 0, 0, 0.45);
-    --hero-from: #2A2350;
-    --focus: #9D7BF4;
-    --link: var(--sky);
-    --blob-alpha: 0.28;
-  }
+  --prompt: #0F7A63; /* mint darkened to pass AA on cream (4.9:1) */
 }
 
 .accent-coral { --accent: var(--coral); }
@@ -75,8 +64,8 @@ body {
   flex-direction: column;
   background: var(--bg);
   color: var(--ink);
-  font-family: ui-rounded, "SF Pro Rounded", "Nunito", "Quicksand", "Varela Round", "Trebuchet MS", system-ui, sans-serif;
-  line-height: 1.55;
+  font-family: ui-monospace, "Cascadia Code", "JetBrains Mono", "Fira Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -99,6 +88,62 @@ a { color: inherit; }
   outline-offset: 3px;
 }
 
+/* ===== Terminal window component ===== */
+
+.term {
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 5px 0 var(--shadow);
+  overflow: hidden;
+  text-align: left;
+}
+
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-bottom: 2px solid var(--line);
+  background: color-mix(in srgb, var(--line) 35%, var(--card));
+}
+
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.dot.d1 { background: var(--coral); }
+.dot.d2 { background: var(--sunny); }
+.dot.d3 { background: var(--mint); }
+
+.term-title {
+  margin-left: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.term-body { padding: 24px 26px 26px; }
+
+.promptline {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.prompt { color: var(--prompt); font-weight: 900; }
+
+.term-output { margin: 0 0 14px; font-size: 0.9rem; color: var(--muted); }
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 0.12em;
+  background: var(--prompt);
+  vertical-align: baseline;
+  animation: blink 1.1s steps(2, start) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
 /* ===== Corner controls (theme toggle, support heart) ===== */
 
 .corner-controls {
@@ -116,7 +161,7 @@ a { color: inherit; }
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 2px solid var(--line);
   background: var(--card);
   color: var(--ink);
@@ -128,14 +173,17 @@ a { color: inherit; }
 .iconbtn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 var(--shadow); }
 .iconbtn:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--shadow); }
 
-:root[data-theme="dark"] .ic-moon { display: none; }
-:root:not([data-theme="dark"]) .ic-sun { display: none; }
-/* No-JS visitors never get a data-theme attribute; source order lets these
-   win the specificity tie so OS-dark users still see the right icon. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .ic-moon { display: none; }
-  :root:not([data-theme="light"]) .ic-sun { display: inline; }
+.heartbtn svg { animation: heartbeat 2.6s ease-in-out infinite; }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  12% { transform: scale(1.18); }
+  24% { transform: scale(1); }
 }
+
+/* Dark (default) shows the sun (click → light); light shows the moon. */
+.ic-moon { display: none; }
+:root[data-theme="light"] .ic-moon { display: inline; }
+:root[data-theme="light"] .ic-sun { display: none; }
 
 /* ===== Hero ===== */
 
@@ -143,7 +191,7 @@ a { color: inherit; }
   position: relative;
   overflow: hidden;
   text-align: center;
-  padding: 84px 20px 56px;
+  padding: 72px 20px 48px;
   background: linear-gradient(180deg, var(--hero-from) 0%, var(--bg) 100%);
 }
 
@@ -152,7 +200,7 @@ a { color: inherit; }
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(28px);
+  filter: blur(30px);
   opacity: var(--blob-alpha);
   animation: drift 12s ease-in-out infinite alternate;
 }
@@ -166,13 +214,20 @@ a { color: inherit; }
   to { transform: translate(24px, -18px) scale(1.12); }
 }
 
-.wordmark {
+.hero-term {
   position: relative;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.hero-term .term-body { padding: 26px 30px 30px; }
+
+.wordmark {
   margin: 0;
-  font-size: clamp(2.8rem, 10vw, 5.2rem);
+  font-size: clamp(2.4rem, 9vw, 4.6rem);
   font-weight: 900;
   letter-spacing: 0.01em;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .wordmark span { display: inline-block; }
@@ -184,13 +239,28 @@ a { color: inherit; }
 .wordmark span:nth-child(6) { color: var(--bubblegum); transform: rotate(2deg); }
 .wordmark span:nth-child(7) { color: var(--coral); transform: rotate(-3deg); }
 
-.wordmark:hover span { animation: hop 0.5s ease; }
-.wordmark span:nth-child(2) { animation-delay: 0.04s; }
-.wordmark span:nth-child(3) { animation-delay: 0.08s; }
-.wordmark span:nth-child(4) { animation-delay: 0.12s; }
-.wordmark span:nth-child(5) { animation-delay: 0.16s; }
-.wordmark span:nth-child(6) { animation-delay: 0.2s; }
-.wordmark span:nth-child(7) { animation-delay: 0.24s; }
+.wordmark:hover span:not(.cursor) { animation: hop 0.5s ease; }
+/* Same specificity as the rule above and later in source, so the
+   staggered delays beat the shorthand's implicit delay reset. */
+.wordmark:hover span:nth-child(2) { animation-delay: 0.04s; }
+.wordmark:hover span:nth-child(3) { animation-delay: 0.08s; }
+.wordmark:hover span:nth-child(4) { animation-delay: 0.12s; }
+.wordmark:hover span:nth-child(5) { animation-delay: 0.16s; }
+.wordmark:hover span:nth-child(6) { animation-delay: 0.2s; }
+.wordmark:hover span:nth-child(7) { animation-delay: 0.24s; }
+
+/* The blinking cursor keeps its own animation even mid-hop. */
+.wordmark .cursor { animation: blink 1.1s steps(2, start) infinite; }
+
+/* Raw accents are tuned for the dark card; on paper they need deeper
+   versions to clear the 3:1 large-text minimum. */
+:root[data-theme="light"] .wordmark span:nth-child(1) { color: #D93A3A; }
+:root[data-theme="light"] .wordmark span:nth-child(2) { color: #A87000; }
+:root[data-theme="light"] .wordmark span:nth-child(3) { color: #178F77; }
+:root[data-theme="light"] .wordmark span:nth-child(4) { color: #1A73AD; }
+:root[data-theme="light"] .wordmark span:nth-child(5) { color: #7E52E8; }
+:root[data-theme="light"] .wordmark span:nth-child(6) { color: #CC2E79; }
+:root[data-theme="light"] .wordmark span:nth-child(7) { color: #D93A3A; }
 
 @keyframes hop {
   30% { transform: translateY(-12px); }
@@ -198,22 +268,25 @@ a { color: inherit; }
 }
 
 .tagline {
-  position: relative;
-  margin: 10px 0 0;
-  font-size: clamp(1rem, 3vw, 1.25rem);
+  margin: 8px 0 0;
+  font-size: clamp(0.95rem, 2.6vw, 1.1rem);
   color: var(--muted);
   font-weight: 600;
 }
+.comment-hash { color: var(--prompt); font-weight: 900; }
 
 /* ===== Project grid ===== */
 
 main { flex: 1; width: 100%; }
 
+.gridwrap { max-width: 980px; margin: 0 auto; padding: 30px 20px 20px; }
+
+.lsline { margin: 0 0 16px; }
+
 .grid {
   list-style: none;
-  margin: 0 auto;
-  padding: 36px 20px 20px;
-  max-width: 980px;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
@@ -237,40 +310,59 @@ main { flex: 1; width: 100%; }
   align-items: center;
   gap: 10px;
   height: 100%;
-  padding: 26px 20px 22px;
+  padding: 0 18px 20px;
   text-align: center;
   text-decoration: none;
   background: var(--card);
   border: 2px solid var(--line);
-  border-radius: 22px;
+  border-radius: 14px;
+  overflow: hidden; /* clip the full-bleed card-bar to the rounded corners */
   box-shadow: 0 5px 0 var(--shadow);
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.card-bar {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 -18px 8px;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--line);
+  background: color-mix(in srgb, var(--line) 35%, var(--card));
+}
+.card-bar .dot { width: 9px; height: 9px; }
+.card-slug {
+  margin-left: auto;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--muted);
 }
 
 a.card:hover, a.card:focus-visible {
   transform: translateY(-6px) rotate(-1.2deg);
   border-color: var(--accent);
-  box-shadow: 0 11px 0 color-mix(in srgb, var(--accent) 35%, transparent);
+  box-shadow: 0 9px 0 var(--shadow), 0 0 26px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 .card-icon {
   display: grid;
   place-items: center;
-  width: 76px;
-  height: 76px;
-  font-size: 40px;
-  border-radius: 20px;
+  width: 72px;
+  height: 72px;
+  font-size: 38px;
+  border-radius: 14px;
   background: color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
-.card-title { margin: 0; font-size: 1.2rem; font-weight: 800; }
-.card-tagline { margin: 0; font-size: 0.92rem; color: var(--muted); }
+.card-title { margin: 0; font-size: 1.1rem; font-weight: 800; }
+.card-tagline { margin: 0; font-size: 0.85rem; color: var(--muted); }
 
 .badge {
   position: absolute;
-  top: 12px;
+  top: 44px;
   right: 12px;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 900;
   letter-spacing: 0.08em;
   color: #1A1626; /* dark ink passes AA on every accent, both themes */
@@ -281,6 +373,7 @@ a.card:hover, a.card:focus-visible {
 }
 
 .card-soon { border-style: dashed; }
+.card-soon .card-bar { border-bottom-style: dashed; }
 .card-soon .card-title, .card-soon .card-tagline { color: var(--muted); }
 .card-soon .card-icon { animation: wobble 3.2s ease-in-out infinite; }
 .grid > li:nth-child(even) .card-soon .card-icon { animation-delay: -1.6s; }
@@ -292,6 +385,8 @@ a.card:hover, a.card:focus-visible {
   60% { transform: rotate(-3deg); }
   80% { transform: rotate(2deg); }
 }
+
+.card-support .card-icon { color: var(--coral); }
 
 /* ===== Inner pages (about, support, 404) ===== */
 
@@ -307,10 +402,11 @@ a.card:hover, a.card:focus-visible {
   align-items: center;
   gap: 6px;
   font-weight: 800;
+  font-size: 0.9rem;
   text-decoration: none;
   padding: 8px 14px;
   border: 2px solid var(--line);
-  border-radius: 12px;
+  border-radius: 10px;
   background: var(--card);
   box-shadow: 0 3px 0 var(--shadow);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -321,31 +417,33 @@ a.card:hover, a.card:focus-visible {
 
 .page {
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
   padding: 12px 20px 48px;
 }
 
+.page .term-body { padding: 22px 26px 30px; }
+
 .page h1 {
-  font-size: clamp(1.9rem, 6vw, 2.6rem);
+  font-size: clamp(1.5rem, 5vw, 2rem);
   font-weight: 900;
-  line-height: 1.15;
-  margin: 0.4em 0 0.5em;
+  line-height: 1.2;
+  margin: 0.2em 0 0.6em;
 }
 
-.page h2 { font-size: 1.25rem; font-weight: 800; margin: 1.6em 0 0.4em; }
-.page p, .page li { color: var(--ink); }
-.page .lede { font-size: 1.1rem; color: var(--muted); font-weight: 600; }
+.page h2 { font-size: 1.05rem; font-weight: 800; margin: 1.8em 0 0.4em; color: var(--ink); }
+.page h2::before { content: "## "; content: "## " / ""; color: var(--prompt); }
+.page p, .page li { color: var(--ink); font-size: 0.95rem; }
+.page .lede { color: var(--muted); font-weight: 600; }
 .page a { color: var(--link); font-weight: 700; text-decoration-thickness: 2px; }
 
 .page ul.fancy { list-style: none; padding: 0; }
 .page ul.fancy li {
   margin: 10px 0;
-  padding: 12px 16px;
-  background: var(--card);
+  padding: 11px 14px;
+  background: color-mix(in srgb, var(--line) 22%, var(--card));
   border: 2px solid var(--line);
-  border-radius: 14px;
-  box-shadow: 0 3px 0 var(--shadow);
+  border-radius: 10px;
 }
 
 .btnrow { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
@@ -354,15 +452,15 @@ a.card:hover, a.card:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px;
-  font-size: 1rem;
+  padding: 11px 18px;
+  font-size: 0.95rem;
   font-weight: 800;
   font-family: inherit;
   text-decoration: none;
   color: var(--ink);
   background: color-mix(in srgb, var(--accent, var(--sky)) 26%, var(--card));
   border: 2px solid var(--accent, var(--sky));
-  border-radius: 14px;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 4px 0 color-mix(in srgb, var(--accent, var(--sky)) 45%, transparent);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -374,23 +472,23 @@ a.card:hover, a.card:focus-visible {
 .newsletter-form input[type="email"] {
   flex: 1;
   min-width: 200px;
-  padding: 12px 14px;
-  font-size: 1rem;
+  padding: 11px 14px;
+  font-size: 0.95rem;
   font-family: inherit;
   color: var(--ink);
-  background: var(--card);
-  border: 2px solid var(--line);
-  border-radius: 14px;
+  background: var(--bg);
+  border: 2px solid var(--muted); /* --line is sub-3:1 for a control boundary */
+  border-radius: 10px;
 }
 
 .supporters { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .supporters li {
-  padding: 8px 14px;
+  padding: 7px 13px;
   font-weight: 700;
-  background: var(--card);
+  font-size: 0.9rem;
+  background: color-mix(in srgb, var(--line) 22%, var(--card));
   border: 2px solid var(--line);
   border-radius: 999px;
-  box-shadow: 0 3px 0 var(--shadow);
 }
 
 /* ===== 404 ===== */
@@ -401,12 +499,14 @@ a.card:hover, a.card:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   padding: 40px 20px;
 }
-.lost .bigicon { font-size: 84px; animation: wobble 3.2s ease-in-out infinite; }
-.lost h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); font-weight: 900; margin: 12px 0 6px; }
-.lost p { color: var(--muted); font-weight: 600; margin: 0 0 22px; }
+.lost-term { width: 100%; max-width: 560px; }
+.lost-term .term-body { text-align: center; }
+.lost-term .promptline, .lost-term .term-output { text-align: left; }
+.lost .bigicon { font-size: 76px; margin: 10px 0 4px; animation: wobble 3.2s ease-in-out infinite; }
+.lost h1 { font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 900; margin: 8px 0 6px; }
+.lost .lost-sub { color: var(--muted); font-weight: 600; margin: 0 0 22px; }
 
 /* ===== Footer ===== */
 
@@ -423,6 +523,7 @@ a.card:hover, a.card:focus-visible {
   justify-content: center;
   gap: 10px;
   font-weight: 700;
+  font-size: 0.9rem;
 }
 .footnav a { text-decoration: none; }
 .footnav a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
@@ -430,23 +531,29 @@ a.card:hover, a.card:focus-visible {
 
 .heart-ink { color: var(--coral); }
 
-.fineprint { margin: 18px 0 0; font-size: 0.8rem; }
+.fineprint { margin: 16px 0 0; font-size: 0.78rem; }
 
 /* ===== Motion & small screens ===== */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .cursor { opacity: 1; }
 }
 
 @media (max-width: 480px) {
-  .hero { padding: 76px 16px 44px; }
-  .grid { grid-template-columns: 1fr 1fr; gap: 12px; padding: 28px 14px 16px; }
-  .card { padding: 20px 12px 16px; }
-  .card-icon { width: 60px; height: 60px; font-size: 32px; }
-  .card-title { font-size: 1.05rem; }
-  .card-tagline { font-size: 0.85rem; }
+  .hero { padding: 68px 14px 40px; }
+  .hero-term .term-body { padding: 20px 18px 24px; }
+  .gridwrap { padding: 24px 14px 16px; }
+  .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card { padding: 0 12px 16px; }
+  .card-bar { margin: 0 -12px 6px; }
+  .card-icon { width: 58px; height: 58px; font-size: 30px; }
+  .card-title { font-size: 0.98rem; }
+  .card-tagline { font-size: 0.78rem; }
+  .badge { top: 38px; }
 }

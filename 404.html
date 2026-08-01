@@ -8,15 +8,22 @@
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🧪&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="/css/style.css">
 <script>
-(function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();
+(function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}document.documentElement.dataset.theme=(t==='light')?'light':'dark';})();
 </script>
 </head>
 <body>
 <main class="lost">
-  <div class="bigicon" aria-hidden="true">🥚</div>
-  <h1>Nothing here… yet.</h1>
-  <p>Maybe this page is still hatching.</p>
-  <a class="btn accent-sunny" href="/">← Back to the experiments</a>
+  <div class="term lost-term">
+    <div class="term-bar" aria-hidden="true"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="term-title">exit code 404</span></div>
+    <div class="term-body">
+      <p class="promptline" aria-hidden="true"><span class="prompt">$</span> cat ./this-page</p>
+      <p class="term-output" aria-hidden="true">cat: ./this-page: No such file or directory</p>
+      <div class="bigicon" aria-hidden="true">🥚</div>
+      <h1>Nothing here… yet.</h1>
+      <p class="lost-sub">Maybe this page is still hatching.</p>
+      <a class="btn accent-sunny" href="/">← Back to the experiments</a>
+    </div>
+  </div>
 </main>
 </body>
 </html>

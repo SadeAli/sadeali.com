@@ -22,7 +22,7 @@
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;🧪&lt;/text&gt;&lt;/svg&gt;">
 <link rel="stylesheet" href="../css/style.css">
 <script>
-(function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;})();
+(function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}document.documentElement.dataset.theme=(t==='light')?'light':'dark';})();
 </script>
 </head>
 <body>
@@ -36,10 +36,14 @@
 </div>
 
 <main class="page">
-  <h1>Support this little corner ♥</h1>
-  <p class="lede">Everything on sadeali.com is free — no ads, no tracking, no paywalls. If the experiments make you smile, here's how to keep them coming.</p>
+  <div class="term">
+    <div class="term-bar" aria-hidden="true"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="term-title">~/support.sh</span></div>
+    <div class="term-body">
+      <p class="promptline" aria-hidden="true"><span class="prompt">$</span> ./support.sh</p>
+      <h1>Support this little corner ♥</h1>
+      <p class="lede">Everything on sadeali.com is free — no ads, no tracking, no paywalls. One person builds all of it. If an experiment made your day one percent better, here's how to keep them coming.</p>
 
-  <h2>Free ways (they mean a lot)</h2>
+      <h2>Free ways (they mean a lot)</h2>
   <ul class="fancy">
     <li>⭐ <strong>Star the projects</strong> on <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a> — stars are how strangers decide a project is worth opening.</li>
     <li>📣 <strong>Share a page</strong> with one friend who'd enjoy it. Word of mouth beats any algorithm.</li>
@@ -70,6 +74,8 @@
     <p>People who chipped in. Thank you — you're the reason the next thing exists.</p>
     <ul class="supporters"></ul>
   </section>
+    </div>
+  </div>
 </main>
 
 <footer class="footer">
@@ -81,7 +87,7 @@
     <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a>
     <span id="supportLinks"></span>
   </nav>
-  <p class="fineprint">© SadeAli · free · no ads · no tracking</p>
+  <p class="fineprint"><span aria-hidden="true"># </span>© SadeAli · free · no ads · no tracking</p>
 </footer>
 
 <script src="../js/support-config.js"></script>

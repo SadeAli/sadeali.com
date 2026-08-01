@@ -24,6 +24,7 @@ into the `<ul class="grid">`:
 ```html
 <li>
   <a class="card accent-mint" href="https://yourthing.sadeali.com/">
+    <span class="card-bar" aria-hidden="true"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="card-slug">your-thing</span></span>
     <span class="badge">NEW</span>
     <span class="card-icon" aria-hidden="true">🎮</span>
     <h2 class="card-title">Your Thing</h2>
@@ -35,8 +36,8 @@ into the `<ul class="grid">`:
 - Accents: `accent-coral`, `accent-sunny`, `accent-mint`, `accent-sky`,
   `accent-lilac`, `accent-bubblegum` — vary them so the grid stays colorful.
 - Move the `NEW` badge to the newest card (only one card should have it).
-- Keep at least one dashed "coming soon" card at the end — it tells visitors
-  the site is alive.
+- Keep at least one dashed "coming soon" card before the `./support.sh` card
+  (which stays last) — it tells visitors the site is alive.
 
 ## Support / monetization switches (Stage 0)
 
@@ -56,7 +57,8 @@ index.html        landing page (hero + card grid)
 about/index.html  what/who/why — no personal details beyond the brand
 support/index.html free ways + Stage-0 donation surfaces
 404.html          served by GitHub Pages for unknown paths (absolute asset paths!)
-css/style.css     the site theme (light + dark, reduced-motion safe)
+css/style.css     friendly-terminal theme (dark-first + paper-terminal
+                  light mode, reduced-motion safe)
 js/main.js        theme toggle + Stage-0 reveal (site works with JS off)
 js/support-config.js  the donation/newsletter switches
 DONATIONS.md      donation setup guide (platforms, fees, activation)
