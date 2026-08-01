@@ -160,13 +160,6 @@ a { color: inherit; }
 }
 .prompt { color: var(--prompt); font-weight: 900; user-select: none; /* copying a command never grabs the $ */ }
 
-/* Soft phosphor glow on prompt glyphs — dark mode only; paper doesn't glow. */
-.prompt, .comment-hash { text-shadow: 0 0 9px color-mix(in srgb, currentColor 55%, transparent); }
-.cursor { box-shadow: 0 0 11px color-mix(in srgb, var(--prompt) 60%, transparent); }
-:root[data-theme="light"] .prompt,
-:root[data-theme="light"] .comment-hash { text-shadow: none; }
-:root[data-theme="light"] .cursor { box-shadow: none; }
-
 .term-output { margin: 0 0 14px; font-size: 0.9rem; color: var(--muted); }
 
 .cursor {
@@ -629,3 +622,25 @@ a.card:hover .card-slug, a.card:focus-visible .card-slug { color: var(--accent-i
   .card-tagline { font-size: 0.78rem; }
   .badge { top: 38px; }
 }
+
+/* ===== Interactive hero shell ===== */
+
+.shell { margin-top: 14px; }
+.shell-out { max-height: 180px; overflow-y: auto; }
+.shell-form { margin: 0; }
+.shell-line-out { margin: 2px 0; font-size: 0.88rem; font-weight: 600; color: var(--muted); white-space: pre-wrap; }
+.shell-line-out.cmd { color: var(--ink); font-weight: 700; }
+.shell-line-out a { color: var(--link); font-weight: 700; }
+.shell-line { display: flex; align-items: baseline; gap: 0.55ch; margin: 4px 0 0; }
+.shell-in {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  outline: none;
+  caret-color: var(--prompt);
+}
+.shell-in::placeholder { color: var(--muted); opacity: 1; font-style: italic; }

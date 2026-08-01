@@ -36,6 +36,8 @@ into the `<ul class="grid">`:
 - Accents: `accent-coral`, `accent-sunny`, `accent-mint`, `accent-sky`,
   `accent-lilac`, `accent-bubblegum` — vary them so the grid stays colorful.
 - Move the `NEW` badge to the newest card (only one card should have it).
+- Also teach the hero shell about it: add the slug → URL to `DESTS` in
+  `js/terminal.js` and list it in the `ls` command's output there.
 - Keep at least one dashed "coming soon" card before the `./support.sh` card
   (which stays last) — it tells visitors the site is alive.
 
@@ -61,6 +63,8 @@ support/index.html free ways + Stage-0 donation surfaces
 css/style.css     friendly-terminal theme (dark-first + paper-terminal
                   light mode, reduced-motion safe)
 js/main.js        theme toggle + Stage-0 reveal (site works with JS off)
+js/terminal.js    the hero shell easter egg (help/ls/open/theme/…; pure
+                  enhancement, the block ships [hidden] without JS)
 js/support-config.js  the donation/newsletter switches
 DONATIONS.md      donation setup guide (platforms, fees, activation)
 .github/FUNDING.yml   GitHub Sponsor button (commented until accounts exist)
