@@ -56,6 +56,10 @@ support/index.html free ways + Stage-0 donation surfaces
 css/style.css     the whole toybox theme (light + dark, reduced-motion safe)
 js/main.js        theme toggle + Stage-0 reveal (site works with JS off)
 js/support-config.js  the switches
+og.png            1200×630 link-preview image (og:image/twitter:image)
+robots.txt        allows all crawlers + points at the sitemap
+sitemap.xml       the 3 pages — add a <url> entry when adding a page
+                  (submitted to Search Console in DEPLOY.md step 4)
 CNAME             sadeali.com (apex)
 ```
 

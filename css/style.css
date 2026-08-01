@@ -12,7 +12,9 @@
   --line: #E8DCC8;
   --shadow: rgba(43, 36, 64, 0.10);
   --hero-from: #C9E9FF;
-  --focus: #3FB3F6;
+  --focus: #1A73AD;
+  --link: #1A73AD;
+  --blob-alpha: 0.5;
 
   --coral: #FF6B6B;
   --sunny: #FFB627;
@@ -31,6 +33,8 @@
   --shadow: rgba(0, 0, 0, 0.45);
   --hero-from: #2A2350;
   --focus: #9D7BF4;
+  --link: var(--sky);
+  --blob-alpha: 0.28;
 }
 
 /* No-JS visitors still get their preferred scheme. */
@@ -44,6 +48,8 @@
     --shadow: rgba(0, 0, 0, 0.45);
     --hero-from: #2A2350;
     --focus: #9D7BF4;
+    --link: var(--sky);
+    --blob-alpha: 0.28;
   }
 }
 
@@ -55,6 +61,10 @@
 .accent-bubblegum { --accent: var(--bubblegum); }
 
 * { box-sizing: border-box; }
+
+/* The Stage-0 reveal depends on [hidden] beating component display rules
+   (UA stylesheets don't always apply it with !important). */
+[hidden] { display: none !important; }
 
 html { height: 100%; }
 
@@ -87,7 +97,6 @@ a { color: inherit; }
 :is(a, button, input, [tabindex]):focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
-  border-radius: 6px;
 }
 
 /* ===== Corner controls (theme toggle, support heart) ===== */
@@ -121,6 +130,12 @@ a { color: inherit; }
 
 :root[data-theme="dark"] .ic-moon { display: none; }
 :root:not([data-theme="dark"]) .ic-sun { display: none; }
+/* No-JS visitors never get a data-theme attribute; source order lets these
+   win the specificity tie so OS-dark users still see the right icon. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ic-moon { display: none; }
+  :root:not([data-theme="light"]) .ic-sun { display: inline; }
+}
 
 /* ===== Hero ===== */
 
@@ -138,10 +153,9 @@ a { color: inherit; }
   position: absolute;
   border-radius: 50%;
   filter: blur(28px);
-  opacity: 0.5;
+  opacity: var(--blob-alpha);
   animation: drift 12s ease-in-out infinite alternate;
 }
-:root[data-theme="dark"] .blob { opacity: 0.28; }
 .b1 { width: 180px; height: 180px; left: 6%; top: 12%; background: var(--coral); animation-duration: 13s; }
 .b2 { width: 140px; height: 140px; right: 10%; top: 8%; background: var(--sunny); animation-duration: 10s; animation-delay: -3s; }
 .b3 { width: 120px; height: 120px; left: 22%; bottom: -10%; background: var(--mint); animation-duration: 15s; animation-delay: -6s; }
@@ -259,18 +273,17 @@ a.card:hover, a.card:focus-visible {
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.08em;
-  color: #fff;
+  color: #1A1626; /* dark ink passes AA on every accent, both themes */
   background: var(--accent);
   padding: 3px 8px;
   border-radius: 999px;
   transform: rotate(6deg);
 }
-:root[data-theme="dark"] .badge { color: #1A1626; }
 
 .card-soon { border-style: dashed; }
 .card-soon .card-title, .card-soon .card-tagline { color: var(--muted); }
 .card-soon .card-icon { animation: wobble 3.2s ease-in-out infinite; }
-.card-soon:nth-of-type(odd) .card-icon { animation-delay: -1.6s; }
+.grid > li:nth-child(even) .card-soon .card-icon { animation-delay: -1.6s; }
 
 @keyframes wobble {
   0%, 100% { transform: rotate(0deg); }
@@ -323,8 +336,7 @@ a.card:hover, a.card:focus-visible {
 .page h2 { font-size: 1.25rem; font-weight: 800; margin: 1.6em 0 0.4em; }
 .page p, .page li { color: var(--ink); }
 .page .lede { font-size: 1.1rem; color: var(--muted); font-weight: 600; }
-.page a { color: var(--sky); font-weight: 700; text-decoration-thickness: 2px; }
-:root:not([data-theme="dark"]) .page a { color: #1D7FBF; }
+.page a { color: var(--link); font-weight: 700; text-decoration-thickness: 2px; }
 
 .page ul.fancy { list-style: none; padding: 0; }
 .page ul.fancy li {
@@ -421,7 +433,7 @@ a.card:hover, a.card:focus-visible {
 .brandstory { margin: 18px 0 4px; font-size: 0.95rem; }
 .brandstory em { font-weight: 700; }
 
-.fineprint { margin: 0; font-size: 0.8rem; opacity: 0.8; }
+.fineprint { margin: 0; font-size: 0.8rem; }
 
 /* ===== Motion & small screens ===== */
 

@@ -9,6 +9,7 @@
   /* ---- Theme toggle (initial theme is set inline in <head>) ---- */
   var toggle = document.getElementById('themeToggle');
   if (toggle) {
+    toggle.hidden = false; /* ships hidden so no-JS visitors never see a dead button */
     toggle.addEventListener('click', function () {
       var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
       root.dataset.theme = next;
