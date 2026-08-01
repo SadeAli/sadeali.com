@@ -42,9 +42,10 @@ into the `<ul class="grid">`:
 ## Support / monetization switches (Stage 0)
 
 `js/support-config.js` holds every donation surface: Ko-fi, Buy Me a Coffee,
-GitHub Sponsors, Liberapay, Patreon, the Buttondown newsletter and the
-supporters wall. Each one stays completely hidden until you fill in the
-matching account name — the site never shows a broken link. `DONATIONS.md`
+GitHub Sponsors, Liberapay, Patreon, the Buttondown newsletter, the ASCII
+goal meter and the supporters wall. Each one stays completely hidden until
+you fill in the matching account name (or goal target) — the site never
+shows a broken link. `DONATIONS.md`
 is the setup guide (which platforms to pick, fees, payout caveats, and the
 `.github/FUNDING.yml` step that adds a Sponsor button on GitHub).
 The ask stays subtle by design: a heart in the corner, links in the footer,

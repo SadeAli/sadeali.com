@@ -23,6 +23,9 @@
 <link rel="stylesheet" href="css/style.css">
 <script>
 (function(){var t=null;try{t=localStorage.getItem('sadeali-theme');}catch(e){}document.documentElement.dataset.theme=(t==='light')?'light':'dark';})();
+/* Typed `whoami` intro: once per session, JS-on, motion allowed. main.js
+   plays it; the timeout is a failsafe so the hero can never stay hidden. */
+(function(){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!sessionStorage.getItem('sadeali-typed')){setTimeout(function(){document.documentElement.classList.remove('typing');},2500);document.documentElement.classList.add('typing');sessionStorage.setItem('sadeali-typed','1');}}catch(e){}})();
 </script>
 <script type="application/ld+json">
 {
@@ -41,6 +44,7 @@
   <div class="corner-controls">
     <a class="iconbtn heartbtn" href="support/" title="Support this site" aria-label="Support this site">
       <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.7-9A5.4 5.4 0 0 1 12 6.6 5.4 5.4 0 0 1 21.7 12c-2.2 4.4-9.7 9-9.7 9Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+      <span class="heartlabel" aria-hidden="true">support</span>
     </a>
     <button class="iconbtn" id="themeToggle" aria-label="Toggle light or dark theme" title="Toggle theme" hidden>
       <svg class="ic-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
@@ -51,7 +55,7 @@
   <div class="term hero-term">
     <div class="term-bar" aria-hidden="true"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="term-title">sadeali@hub:~</span></div>
     <div class="term-body">
-      <p class="promptline" aria-hidden="true"><span class="prompt">$</span> whoami</p>
+      <p class="promptline" aria-hidden="true"><span class="prompt">$</span> <span id="typedCmd">whoami</span></p>
       <h1 class="wordmark" aria-label="SadeAli"><span aria-hidden="true">S</span><span aria-hidden="true">a</span><span aria-hidden="true">d</span><span aria-hidden="true">e</span><span aria-hidden="true">A</span><span aria-hidden="true">l</span><span aria-hidden="true">i</span><span class="cursor" aria-hidden="true"></span></h1>
       <p class="tagline"><span class="comment-hash" aria-hidden="true"># </span>little experiments on the internet</p>
     </div>
@@ -61,6 +65,7 @@
 <main id="projects">
   <div class="gridwrap">
     <p class="promptline lsline" aria-hidden="true"><span class="prompt">$</span> ls ./experiments</p>
+    <p class="lsout" aria-hidden="true">total 4 — 1 live · 2 hatching · 1 script</p>
     <ul class="grid" aria-label="Projects">
       <li>
         <a class="card accent-sky" href="https://waytoc.sadeali.com/">
@@ -68,7 +73,7 @@
           <span class="badge">NEW</span>
           <span class="card-icon" aria-hidden="true">⚙️</span>
           <h2 class="card-title">The C Path</h2>
-          <p class="card-tagline">Learn C from zero, visually — interactive lessons on a real compiler</p>
+          <p class="card-tagline">Learn C from zero — visual, interactive, on a real compiler</p>
         </a>
       </li>
       <li>
@@ -92,7 +97,7 @@
           <span class="card-bar" aria-hidden="true"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><span class="card-slug">support.sh</span></span>
           <span class="card-icon" aria-hidden="true">♥</span>
           <h2 class="card-title">./support.sh</h2>
-          <p class="card-tagline">keep the experiments running</p>
+          <p class="card-tagline">fuel the next experiment</p>
         </a>
       </li>
     </ul>

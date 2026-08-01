@@ -28,6 +28,11 @@ window.SUPPORT = {
      Renders the email opt-in form on /support. */
   buttondown: '',
 
+  /* Goal meter on /support — an ASCII progress bar toward this year's
+     running costs. Shown only when target > 0 AND at least one platform
+     above is configured. Hand-edit `raised` as donations arrive. */
+  goal: { label: "2026 running costs", target: 0, raised: 0 },
+
   /* Names shown on the supporters wall (/support). Hand-edit after
      each donation (ask permission before listing a name). */
   supporters: [],

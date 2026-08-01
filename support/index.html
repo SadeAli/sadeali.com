@@ -43,6 +43,14 @@
       <h1>Support this little corner ♥</h1>
       <p class="lede">Everything on sadeali.com is free — no ads, no tracking, no paywalls. One person builds all of it. If an experiment made your day one percent better, here's how to keep them coming.</p>
 
+      <h2>What it costs to run</h2>
+      <p class="promptline" aria-hidden="true"><span class="prompt">$</span> cat costs.txt</p>
+      <pre class="costs">domain ......... $12 / year
+hosting ........ <span class="ok">$0</span>  <span class="dim">(GitHub Pages)</span>
+ads, trackers .. <span class="ok">$0</span>  <span class="dim">(never)</span>
+time ........... evenings, gladly</pre>
+      <p>Small numbers on purpose — support isn't about keeping the lights on, it's about making the next experiment exist sooner.</p>
+
       <h2>Free ways (they mean a lot)</h2>
   <ul class="fancy">
     <li>⭐ <strong>Star the projects</strong> on <a href="https://github.com/SadeAli" rel="me noopener">GitHub</a> — stars are how strangers decide a project is worth opening.</li>
@@ -56,8 +64,11 @@
     <!-- Buttons are rendered by js/main.js from the switches in
          js/support-config.js — one per configured platform. -->
     <p class="btnrow" id="donateButtons"></p>
+    <!-- Goal meter: rendered by js/main.js from SUPPORT.goal; stays
+         hidden until a target is set AND at least one platform exists. -->
+    <pre class="costs goalbar" id="goalMeter" role="img" hidden></pre>
   </section>
-  <p id="moneySoon">Donation buttons aren't wired up yet — for now, a GitHub star is the best coffee. ☕</p>
+  <p id="moneySoon"><span class="prompt" aria-hidden="true">$</span> ./donate.sh<br><span class="comment-hash" aria-hidden="true"># </span>status: not installed (yet). For now, a GitHub star is the best coffee. ☕</p>
 
   <section id="newsletter" hidden>
     <h2>Get new experiments by email</h2>
