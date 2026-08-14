@@ -36,6 +36,7 @@
 
   var DESTS = {
     'the-c-path': 'https://waytoc.sadeali.com/',
+    'art-daily': 'https://artdaily.sadeali.com/',
     'support': 'support/',
     'about': 'about/',
     'github': 'https://github.com/SadeAli',
@@ -58,7 +59,7 @@
       echo('  whoami · clear · exit');
     },
     ls: function () {
-      line('', [link('the-c-path', DESTS['the-c-path']), txt('   '), txt('???'), txt('   '), txt('???'), txt('   '), link('support.sh', DESTS.support)]);
+      line('', [link('the-c-path', DESTS['the-c-path']), txt('   '), link('art-daily', DESTS['art-daily']), txt('   '), txt('???'), txt('   '), link('support.sh', DESTS.support)]);
     },
     whoami: function () { echo('a lovely visitor'); },
     about: function () { go('about'); },
