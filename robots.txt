@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sadeali.com/sitemap.xml
+# The index, not sitemap.xml: it names this host's sitemap plus every
+# subdomain's, so a crawler that starts here finds the whole network.
+Sitemap: https://sadeali.com/sitemap-index.xml

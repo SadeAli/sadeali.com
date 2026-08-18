@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- One entry point for the whole network. A sitemap may only list URLs on the
+     host that serves it, so each site keeps its own; an index may point across
+     hosts as long as they are verified together, which the sc-domain:sadeali.com
+     property does for the apex and every subdomain at once. Submit THIS url in
+     Search Console and the three below come with it — and a new subdomain
+     becomes one line here instead of another submission. -->
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>https://sadeali.com/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://artdaily.sadeali.com/sitemap.xml</loc></sitemap>
+  <sitemap><loc>https://waytoc.sadeali.com/sitemap.xml</loc></sitemap>
+</sitemapindex>

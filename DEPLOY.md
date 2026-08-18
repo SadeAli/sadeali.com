@@ -43,9 +43,16 @@ Wait for the DNS check to pass, then tick **Enforce HTTPS**.
 
 ## 4. Tell search engines
 
-Submit `https://sadeali.com/sitemap.xml` in
+Submit **`https://sadeali.com/sitemap-index.xml`** in
 [Google Search Console](https://search.google.com/search-console)
 (verify via the DNS TXT method — you're already in the DNS panel anyway).
+
+That one URL covers the network. It is a sitemap *index*: it names this
+host's `sitemap.xml` and every subdomain's, and Search Console follows it
+into each. Submitting it needs the **`sc-domain:sadeali.com`** property —
+the domain property, which verifies the apex and every subdomain together —
+because a sitemap may only list URLs on hosts it is verified for. Add a new
+subdomain by adding one `<sitemap>` line to the index; nothing to re-submit.
 
 ## Subdomains (each project repo does this once)
 

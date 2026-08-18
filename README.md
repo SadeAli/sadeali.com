@@ -69,9 +69,11 @@ js/support-config.js  the donation/newsletter switches
 DONATIONS.md      donation setup guide (platforms, fees, activation)
 .github/FUNDING.yml   GitHub Sponsor button (commented until accounts exist)
 og.png            1200×630 link-preview image (og:image/twitter:image)
-robots.txt        allows all crawlers + points at the sitemap
+robots.txt        allows all crawlers + points at the sitemap index
 sitemap.xml       the 3 pages — add a <url> entry when adding a page
-                  (submitted to Search Console in DEPLOY.md step 4)
+sitemap-index.xml this host's sitemap + every subdomain's; the one URL
+                  submitted to Search Console (DEPLOY.md step 4), so a new
+                  subdomain is a line here, not another submission
 CNAME             sadeali.com (apex)
 ```
 
